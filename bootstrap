@@ -5,7 +5,7 @@ f_basic=0
 f_configuration=0
 f_debug=0
 
-base_url=""
+base_url="https://raw.githubusercontent.com/varunkashyap/quick-provision-scripts/master/lib/"
 basic_script="basic_provision"
 configuration_script="configuration"
 
