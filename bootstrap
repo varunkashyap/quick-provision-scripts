@@ -1,0 +1,40 @@
+#!/usr/bin/env bash
+
+extras=""
+f_basic=0
+f_configuration=0
+f_debug=0
+
+base_url=""
+basic_script="basic_provision"
+configuration_script="configuration"
+
+while getopts "h?bcde:" opt; do
+    case "$opt" in
+    h|\?)
+        show_help
+        exit 0
+        ;;
+    b)  f_basic=1
+        ;;
+    c)  f_configuration=1
+        ;;
+    d)  f_debug=1
+        ;;
+    e)  extras=$OPTARG
+        ;;
+    esac
+done
+
+if [ $f_debug -eq 1 ] ; then
+    echo BASIC = "${f_basic}"
+    echo CONFIGURATION = "${f_configuration}"
+fi
+
+if [ $f_basic -eq 1 ] ; then
+    wget -O - $base_url$basic_script | bash
+fi
+
+if [ $f_configuration -eq 1 ] ; then
+    wget -O - $base_url$configuration_script | bash
+fi
